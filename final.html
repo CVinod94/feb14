@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Forever Valentine ❤️</title>
+
+<style>
+body{
+  margin:0;
+  font-family:Arial, sans-serif;
+  text-align:center;
+  background:linear-gradient(135deg,#ff416c,#8e2de2);
+  color:white;
+  overflow-x:hidden;
+}
+
+/* Floating hearts */
+.heart{
+  position:fixed;
+  bottom:-20px;
+  font-size:20px;
+  animation:float 6s linear infinite;
+  z-index:1;
+}
+@keyframes float{
+  to{
+    transform:translateY(-120vh);
+    opacity:0;
+  }
+}
+
+/* Intro Screen */
+#intro{
+  position:fixed;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.85);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  z-index:5;
+}
+
+#intro button{
+  margin-top:20px;
+}
+
+/* Sections */
+.section{
+  position:relative;
+  z-index:2;
+  margin:50px 20px;
+  padding:30px;
+  background:rgba(255,255,255,0.15);
+  border-radius:20px;
+}
+
+/* Button */
+button{
+  padding:12px 25px;
+  border:none;
+  border-radius:30px;
+  font-size:16px;
+  background:#ff1744;
+  color:white;
+  cursor:pointer;
+  transition:0.3s;
+}
+button:hover{
+  transform:scale(1.1);
+}
+
+/* Image */
+.love-img{
+  width:260px;
+  border-radius:20px;
+  margin-top:15px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.4);
+}
+
+/* Kiss */
+#kiss{
+  display:none;
+  font-size:60px;
+  margin-top:10px;
+}
+
+/* Popup */
+#popup{
+  display:none;
+  position:fixed;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  background:#ff1744;
+  padding:30px;
+  border-radius:20px;
+  z-index:10;
+}
+
+/* Firework */
+.fire{
+  position:fixed;
+  font-size:30px;
+  animation:explode 1s forwards;
+}
+@keyframes explode{
+  from{transform:scale(0);}
+  to{transform:scale(3);opacity:0;}
+}
+</style>
+</head>
+
+<body>
+
+<div id="intro">
+  <h1>💖 For Someone Very Special 💖</h1>
+  <button onclick="enterSite()">Enter My Heart ❤️</button>
+</div>
+
+<h1>💘 Happy Valentine’s Week 💘</h1>
+
+<div class="section">
+  <h2>💑 Our Love</h2>
+  <img src="love.jpg" class="love-img">
+  <p>"Every love story is beautiful, but ours is my favorite."</p>
+</div>
+
+<div class="section">
+  <h2>💋 Kiss</h2>
+  <button onclick="showKiss()">Send Kiss 💋</button>
+  <div id="kiss">💋💋💋</div>
+</div>
+
+<div class="section">
+  <h2>⏳ Countdown to Feb 14</h2>
+  <div id="countdown"></div>
+</div>
+
+<div class="section">
+  <button onclick="openPopup()">💍 Will You Be My Valentine?</button>
+</div>
+
+<div id="popup">
+  <h2>Will You Be Mine Forever? 💖</h2>
+  <button onclick="yes()">YES ❤️</button>
+</div>
+
+<audio id="music" loop>
+  <source src="love.mp3" type="audio/mp3">
+</audio>
+
+<script>
+
+/* Intro */
+function enterSite(){
+  document.getElementById("intro").style.display="none";
+  document.getElementById("music").play();
+}
+
+/* Floating hearts */
+function createHeart(){
+  const heart=document.createElement("div");
+  heart.className="heart";
+  heart.innerHTML="❤️";
+  heart.style.left=Math.random()*100+"vw";
+  document.body.appendChild(heart);
+  setTimeout(()=>heart.remove(),6000);
+}
+setInterval(createHeart,500);
+
+/* Kiss */
+function showKiss(){
+  document.getElementById("kiss").style.display="block";
+}
+
+/* Countdown */
+function updateCountdown(){
+  const val=new Date("Feb 14, 2026 00:00:00").getTime();
+  const now=new Date().getTime();
+  const gap=val-now;
+
+  const d=Math.floor(gap/(1000*60*60*24));
+  const h=Math.floor((gap%(1000*60*60*24))/(1000*60*60));
+  const m=Math.floor((gap%(1000*60*60))/(1000*60));
+  const s=Math.floor((gap%(1000*60))/1000);
+
+  document.getElementById("countdown").innerHTML=
+  d+"d "+h+"h "+m+"m "+s+"s ❤️";
+}
+setInterval(updateCountdown,1000);
+
+/* Popup */
+function openPopup(){
+  document.getElementById("popup").style.display="block";
+}
+
+function yes(){
+  document.getElementById("popup").style.display="none";
+  for(let i=0;i<20;i++){
+    let f=document.createElement("div");
+    f.className="fire";
+    f.innerHTML="❤️";
+    f.style.left=Math.random()*100+"vw";
+    f.style.top=Math.random()*100+"vh";
+    document.body.appendChild(f);
+    setTimeout(()=>f.remove(),1000);
+  }
+  alert("I Love You Forever ❤️");
+}
+
+</script>
+
+</body>
+</html>
