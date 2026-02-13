@@ -3,16 +3,50 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>My Forever Valentine ❤️</title>
+<title>Valentine ❤️</title>
 
 <style>
 body{
   margin:0;
   font-family:Arial, sans-serif;
-  text-align:center;
   background:linear-gradient(135deg,#ff416c,#8e2de2);
   color:white;
+  text-align:center;
   overflow-x:hidden;
+}
+
+/* FULL INTRO OVERLAY */
+#intro{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:#000;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  z-index:9999;
+}
+
+button{
+  padding:12px 25px;
+  border:none;
+  border-radius:25px;
+  background:#ff1744;
+  color:white;
+  font-size:16px;
+  cursor:pointer;
+  margin-top:15px;
+}
+
+/* Sections */
+.section{
+  margin:50px 20px;
+  padding:30px;
+  background:rgba(255,255,255,0.15);
+  border-radius:20px;
 }
 
 /* Floating hearts */
@@ -21,63 +55,12 @@ body{
   bottom:-20px;
   font-size:20px;
   animation:float 6s linear infinite;
-  z-index:1;
 }
 @keyframes float{
   to{
     transform:translateY(-120vh);
     opacity:0;
   }
-}
-
-/* Intro Screen */
-#intro{
-  position:fixed;
-  width:100%;
-  height:100%;
-  background:rgba(0,0,0,0.85);
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  flex-direction:column;
-  z-index:5;
-}
-
-#intro button{
-  margin-top:20px;
-}
-
-/* Sections */
-.section{
-  position:relative;
-  z-index:2;
-  margin:50px 20px;
-  padding:30px;
-  background:rgba(255,255,255,0.15);
-  border-radius:20px;
-}
-
-/* Button */
-button{
-  padding:12px 25px;
-  border:none;
-  border-radius:30px;
-  font-size:16px;
-  background:#ff1744;
-  color:white;
-  cursor:pointer;
-  transition:0.3s;
-}
-button:hover{
-  transform:scale(1.1);
-}
-
-/* Image */
-.love-img{
-  width:260px;
-  border-radius:20px;
-  margin-top:15px;
-  box-shadow:0 10px 25px rgba(0,0,0,0.4);
 }
 
 /* Kiss */
@@ -97,18 +80,7 @@ button:hover{
   background:#ff1744;
   padding:30px;
   border-radius:20px;
-  z-index:10;
-}
-
-/* Firework */
-.fire{
-  position:fixed;
-  font-size:30px;
-  animation:explode 1s forwards;
-}
-@keyframes explode{
-  from{transform:scale(0);}
-  to{transform:scale(3);opacity:0;}
+  z-index:10000;
 }
 </style>
 </head>
@@ -117,16 +89,10 @@ button:hover{
 
 <div id="intro">
   <h1>💖 For Someone Very Special 💖</h1>
-  <button onclick="enterSite()">Enter My Heart ❤️</button>
+  <button onclick="enter()">Enter My Heart ❤️</button>
 </div>
 
 <h1>💘 Happy Valentine’s Week 💘</h1>
-
-<div class="section">
-  <h2>💑 Our Love</h2>
-  <img src="love.jpg" class="love-img">
-  <p>"Every love story is beautiful, but ours is my favorite."</p>
-</div>
 
 <div class="section">
   <h2>💋 Kiss</h2>
@@ -135,7 +101,7 @@ button:hover{
 </div>
 
 <div class="section">
-  <h2>⏳ Countdown to Feb 14</h2>
+  <h2>⏳ Countdown</h2>
   <div id="countdown"></div>
 </div>
 
@@ -148,16 +114,11 @@ button:hover{
   <button onclick="yes()">YES ❤️</button>
 </div>
 
-<audio id="music" loop>
-  <source src="love.mp3" type="audio/mp3">
-</audio>
-
 <script>
 
-/* Intro */
-function enterSite(){
+/* ENTER SITE */
+function enter(){
   document.getElementById("intro").style.display="none";
-  document.getElementById("music").play();
 }
 
 /* Floating hearts */
@@ -198,17 +159,8 @@ function openPopup(){
 }
 
 function yes(){
-  document.getElementById("popup").style.display="none";
-  for(let i=0;i<20;i++){
-    let f=document.createElement("div");
-    f.className="fire";
-    f.innerHTML="❤️";
-    f.style.left=Math.random()*100+"vw";
-    f.style.top=Math.random()*100+"vh";
-    document.body.appendChild(f);
-    setTimeout(()=>f.remove(),1000);
-  }
   alert("I Love You Forever ❤️");
+  document.getElementById("popup").style.display="none";
 }
 
 </script>
